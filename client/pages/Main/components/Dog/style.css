@@ -1,0 +1,8 @@
+.dog {
+    padding: 4px;
+    border: 1px solid gainsboro;
+}
+
+.dog__image {
+    object-fit: cover;
+}

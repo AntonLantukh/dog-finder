@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "lib": ["ESNext", "DOM"],
+        "module": "ES2020",
+        "moduleResolution": "node",
+        "target": "ESNext",
+        "strict": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "allowUnreachableCode": false,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": "./",
+        "paths": {
+            "client/*": ["./client/*"]
+        }
+    },
+    "include": ["client/**/*.ts", "client/**/*.spec.ts", "client/**/*.tsx", "typings/**/*.ts"],
+    "exclude": ["node_modules"]
+}

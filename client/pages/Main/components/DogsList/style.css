@@ -1,0 +1,5 @@
+.dogs {
+    display: grid;
+    column-gap: 20px;
+    grid-auto-flow: column;
+}

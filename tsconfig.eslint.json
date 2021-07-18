@@ -1,0 +1,5 @@
+{
+    "extends": "./tsconfig.json",
+    "include": ["client/**/*.ts", "client/**/*.spec.ts", "client/**/*.tsx", "typings/**/*.ts"],
+    "exclude": ["node_modules"]
+}

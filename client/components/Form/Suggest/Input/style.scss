@@ -1,0 +1,26 @@
+.suggest {
+    &__input {
+        padding: 12px 8% 12px 2%;
+        margin: 0;
+        background-color: var(--white);
+        border-color: var(--silverChalice);
+        border-radius: 0;
+        border-style: solid;
+        border-width: 1px;
+        font-size: 0.813em;
+        line-height: 15px;
+    }
+
+    &__label {
+        font-size: 0.875em;
+        line-height: 30px;
+    }
+
+    &__pending {
+        position: absolute;
+        top: 38px;
+        right: 5px;
+        width: 24px;
+        height: 24px;
+    }
+}
