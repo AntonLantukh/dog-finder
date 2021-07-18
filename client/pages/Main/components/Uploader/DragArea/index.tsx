@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import {useDragDropHandlers} from './useDragDropHandlers';
 
-import css from './style.css';
+import css from './style.scss';
 
 type DragAreaProps = {
     onFileDrop: (e: DragEvent) => void;

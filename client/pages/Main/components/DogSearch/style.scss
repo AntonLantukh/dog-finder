@@ -5,8 +5,8 @@
     margin: 0 auto;
     grid-auto-flow: row;
     row-gap: 20px;
-}
 
-.dogSearch__spinner {
-    margin: 0 auto;
+    &__spinner {
+        margin: 0 auto;
+    }
 }

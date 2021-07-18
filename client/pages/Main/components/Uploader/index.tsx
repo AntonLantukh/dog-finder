@@ -3,7 +3,7 @@ import React, {useState, FunctionComponent, ChangeEvent, DragEvent, useCallback}
 import DragArea from './DragArea';
 import Preview from './Preview';
 
-import css from './style.css';
+import css from './style.scss';
 
 type UploaderProps = {
     accept: string;

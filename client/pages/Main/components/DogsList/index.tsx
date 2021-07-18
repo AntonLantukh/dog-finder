@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import cn from 'classnames';
 
-import css from './style.css';
+import css from './style.scss';
 
 import Dog from '../Dog';
 

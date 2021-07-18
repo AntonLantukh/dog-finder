@@ -7,8 +7,12 @@
     padding: 4px;
     border: 1px solid var(--gainsboro);
     margin-left: 40px;
-}
 
-.preview__image {
-    object-fit: cover;
+    @media (max-width: 600px) {
+        margin-left: 0;
+    }
+
+    &__image {
+        object-fit: cover;
+    }
 }

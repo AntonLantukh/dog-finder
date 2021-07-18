@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react';
 
 import logo from './logo.svg';
 
-import css from './style.css';
+import css from './style.scss';
 
 const Header: FunctionComponent = () => (
     <div className={css.header}>

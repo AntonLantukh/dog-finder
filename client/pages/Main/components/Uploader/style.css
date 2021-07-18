@@ -1,5 +1,0 @@
-.uploader {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 1fr min-content;
-}

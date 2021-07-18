@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 
-import css from './style.css';
+import css from './style.scss';
 
 type BreedProps = {
     breed: string | null;

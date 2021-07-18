@@ -1,0 +1,10 @@
+.uploader {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr min-content;
+
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}

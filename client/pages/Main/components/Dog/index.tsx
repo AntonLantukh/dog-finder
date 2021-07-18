@@ -1,15 +1,25 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useState, useCallback} from 'react';
 
-import css from './style.css';
+import css from './style.scss';
+
+import img from './image.svg';
 
 type DogProps = {
     dog: string;
 };
 
-const Dog: FunctionComponent<DogProps> = ({dog}) => (
-    <section className={css.dog}>
-        <img className={css.dog__image} src={dog} alt="Dog" />
-    </section>
-);
+const Dog: FunctionComponent<DogProps> = ({dog}) => {
+    const [url, setUrl] = useState(img);
+
+    const onLoad = useCallback(() => {
+        setUrl(dog);
+    }, [dog]);
+
+    return (
+        <section className={css.dog}>
+            <img onLoad={onLoad} className={css.dog__image} src={url} alt="Dog" />
+        </section>
+    );
+};
 
 export default Dog;
