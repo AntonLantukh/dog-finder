@@ -1,0 +1,14 @@
+.preview {
+    display: flex;
+    min-width: 200px;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border: 1px solid var(--gainsboro);
+    margin-left: 40px;
+}
+
+.preview__image {
+    object-fit: cover;
+}

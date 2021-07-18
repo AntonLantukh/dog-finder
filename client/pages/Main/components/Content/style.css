@@ -1,3 +1,5 @@
 .root {
-    margin: auto 60px;
+    display: grid;
+    margin: 20px 60px;
+    row-gap: 20px;
 }

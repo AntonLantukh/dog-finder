@@ -1,6 +1,6 @@
 import React, {MouseEvent, KeyboardEvent, MutableRefObject, FunctionComponent} from 'react';
 
-import {LocationRes} from 'client/api/getLocations';
+import {LocationRes} from 'client/api/getDogs';
 
 import {OptionContent, OptionEmpty} from '../Option';
 

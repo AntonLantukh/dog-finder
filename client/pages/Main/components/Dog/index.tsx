@@ -2,11 +2,13 @@ import React, {FunctionComponent} from 'react';
 
 import css from './style.css';
 
-import dog from './dog.jpeg';
+type DogProps = {
+    dog: string;
+};
 
-const Dog: FunctionComponent = () => (
+const Dog: FunctionComponent<DogProps> = ({dog}) => (
     <section className={css.dog}>
-        <img className={css.dog__image} width="200" height="300" src={dog} alt="Dog" />
+        <img className={css.dog__image} src={dog} alt="Dog" />
     </section>
 );
 

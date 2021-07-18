@@ -2,8 +2,8 @@ import {useCallback, RefObject, KeyboardEvent, MouseEvent, ChangeEvent, FocusEve
 
 import {KEYBOARD_KEYS} from 'client/constants/keycode';
 
-import type {Location} from 'client/typings';
-import {LocationRes} from 'client/api/getLocations';
+import type {Location} from 'client/typings/breed';
+import {LocationRes} from 'client/api/getDogs';
 
 import useDebounce from 'client/hooks/useDebounce';
 

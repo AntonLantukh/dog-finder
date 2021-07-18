@@ -1,0 +1,6 @@
+.breed {
+    padding: 20px;
+    border: 2px solid var(--dustStorm);
+    font-size: 18px;
+    text-align: center;
+}

@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 
 const {assets, css, babel} = require('../modules');
 const plugins = require('../plugins');

@@ -1,8 +1,8 @@
 import React, {useState, useRef, FunctionComponent} from 'react';
 
-import {LocationRes} from 'client/api/getLocations';
+import {LocationRes} from 'client/api/getDogs';
 import useOutsideClick from 'client/hooks/useOutsideClick';
-import getLocations from 'client/api/getLocations';
+import getLocations from 'client/api/getDogs';
 
 import Announcement from './Announcement';
 import Input from './Input';

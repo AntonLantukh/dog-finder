@@ -1,16 +1,14 @@
 import React, {FunctionComponent} from 'react';
 
 import Header from '../Header';
-import DogsList from '../DogsList';
-import Uploader from '../Uploader';
+import DogSearch from '../DogSearch';
 
 import css from './style.css';
 
 const Content: FunctionComponent = () => (
     <div className={css.root}>
         <Header />
-        <Uploader />
-        <DogsList />
+        <DogSearch />
     </div>
 );
 

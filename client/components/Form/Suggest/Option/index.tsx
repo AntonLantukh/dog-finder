@@ -1,7 +1,7 @@
 import React, {MouseEvent, KeyboardEvent, memo, FunctionComponent} from 'react';
 
 import {PLACE} from 'client/constants/location';
-import type {Location} from 'client/typings';
+import type {Location} from 'client/typings/breed';
 
 import {stringify} from '../utils';
 

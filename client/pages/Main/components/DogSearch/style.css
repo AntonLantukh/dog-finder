@@ -1,0 +1,12 @@
+.dogSearch {
+    display: grid;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    grid-auto-flow: row;
+    row-gap: 20px;
+}
+
+.dogSearch__spinner {
+    margin: 0 auto;
+}

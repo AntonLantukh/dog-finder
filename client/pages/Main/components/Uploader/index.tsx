@@ -1,43 +1,83 @@
-import React, {useState, FunctionComponent, ChangeEvent} from 'react';
+import React, {useState, FunctionComponent, ChangeEvent, DragEvent, useCallback} from 'react';
+
+import DragArea from './DragArea';
+import Preview from './Preview';
 
 import css from './style.css';
 
-const Uploader: FunctionComponent = () => {
+type UploaderProps = {
+    accept: string;
+    showPreview?: boolean;
+    onChange: (f: FileList) => void;
+    validateFile?: (f: FileList | null) => string | null;
+};
+
+const Uploader: FunctionComponent<UploaderProps> = ({showPreview = true, accept, onChange, validateFile}) => {
     const [previewUrl, setPreviewUrl] = useState<string>('');
     const [isPreviewPending, setPending] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
 
-    const onChange = (e: ChangeEvent) => {
-        const file = (e.target as HTMLInputElement)?.files?.[0];
+    const setPreview = useCallback(
+        (file: File) => {
+            const reader = new FileReader();
 
-        if (!file) {
-            return;
-        }
+            reader.onloadstart = () => setPending(true);
+            reader.onerror = () => setPending(false);
+            reader.onabort = () => setPending(false);
+            reader.onloadend = () => setPending(false);
+            reader.onload = () => setPreviewUrl(reader.result as string);
 
-        const reader = new FileReader();
-        setPending(true);
+            reader.readAsDataURL(file);
+        },
+        [setPreviewUrl],
+    );
 
-        reader.onerror = () => setPending(false);
-        reader.onabort = () => setPending(false);
-        reader.onloadend = () => setPending(false);
-        reader.onload = () => setPreviewUrl(reader.result as string);
+    const onFileUpload = useCallback(
+        (evt: ChangeEvent) => {
+            const files = (evt.target as HTMLInputElement)?.files;
 
-        reader.readAsDataURL(file);
-    };
+            const error = validateFile ? validateFile(files) : null;
+
+            if (error) {
+                setError(error);
+                return;
+            }
+
+            const checkedFiles = files as FileList;
+
+            if (showPreview) {
+                setPreview(checkedFiles[0]);
+            }
+
+            onChange(checkedFiles);
+        },
+        [setPreview, showPreview, onChange, validateFile],
+    );
+
+    const onFileDrop = useCallback(
+        (evt: DragEvent) => {
+            const files = evt.dataTransfer.files;
+
+            const error = validateFile ? validateFile(files) : null;
+
+            if (error) {
+                setError(error);
+                return;
+            }
+
+            if (showPreview && files?.length) {
+                setPreview(files[0]);
+            }
+
+            onChange(files);
+        },
+        [setPreview, showPreview, onChange, validateFile],
+    );
+
     return (
         <div className={css.uploader}>
-            <div className={css.uploader__file}>
-                <input type="file" id="upload" hidden onChange={onChange} accept=".jpg,.jpeg,.png" />
-                <label htmlFor="upload" className={css.uploader__button}>
-                    Upload the image
-                </label>
-                <span className={css.uploader__drag}>Or drag it</span>
-            </div>
-            {console.log(isPreviewPending)}
-            <div className={css.uploader__preview}>
-                {previewUrl && (
-                    <img className={css.uploader__image} src={previewUrl} alt="preview" width="200" height="300" />
-                )}
-            </div>
+            <DragArea {...{onFileUpload, onFileDrop, accept, error}} />
+            {showPreview && previewUrl && <Preview {...{previewUrl, isPreviewPending}} />}
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, fireEvent, waitFor} from '@testing-library/react';
 
-import getLocations from 'client/api/getLocations';
+import getLocations from 'client/api/getDogs';
 
 import {MOCK_LOCATION} from 'client/spec/location';
 

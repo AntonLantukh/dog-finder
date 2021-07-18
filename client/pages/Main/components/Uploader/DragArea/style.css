@@ -1,0 +1,40 @@
+.dragdrop {
+    display: flex;
+    min-width: 150px;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--gray);
+    text-align: center;
+}
+
+.dragdrop_dragged {
+    border: 2px dashed var(--yellow);
+    background-color: var(--lightyellow);
+}
+
+.dragdrop_error {
+    border: 2px dashed var(--error);
+}
+
+.dragdrop__error {
+    color: var(--error);
+    font-size: 12px;
+}
+
+.dragdrop__caption {
+    color: var(--gray);
+    font-size: 18px;
+}
+
+.dragdrop__button {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    background-color: var(--paco);
+    border-radius: 8px;
+    color: var(--white);
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 18px;
+}
