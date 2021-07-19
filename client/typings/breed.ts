@@ -7,7 +7,7 @@ export type BreedWithUrl = {
     status: StatusEnum;
 };
 
-export type Breeds = Record<string, string[]>;
+export type Breeds = Record<string, string | string[]>;
 
 export type BreedList = {
     message: Breeds;

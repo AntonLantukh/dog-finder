@@ -13,8 +13,8 @@ type FileHandlersProps = {
     setDogs: (d: (s: string[]) => string[]) => void;
     setError: (e: any) => void;
     setSearchActivated: (a: boolean) => void;
-    setBreed: (b: string) => void;
-    fetchDogs: (b: string) => Promise<void>;
+    setBreed: (b: string[]) => void;
+    fetchDogs: (b: string[]) => Promise<void>;
 };
 
 export const useFileHandlers = ({
@@ -40,13 +40,15 @@ export const useFileHandlers = ({
                 const image = document.createElement('img');
                 image.src = fileReader.result as string;
 
-                const predictions = await getPredictions(fileReader).catch(err => setError(err));
-                const breed = getBreedFromPrediction(predictions, breeds);
+                const predictions = await getPredictions(fileReader)
+                    .catch(err => setError(err))
+                    .finally(() => setIsPending(false));
+
+                const breed = getBreedFromPrediction(predictions || [], breeds);
 
                 await fetchDogs(breed).then(() => {
                     setBreed(breed);
                     setSearchActivated(true);
-                    setIsPending(false);
                 });
             };
             fileReader.readAsDataURL(file);

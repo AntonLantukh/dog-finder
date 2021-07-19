@@ -1,6 +1,6 @@
-# Suggest
+# Find your dog's breed!
 
-**Select perfect option!**
+**Only best pics!**
 
 `npm i` - to install dependencies  
 `npm run build:client-dev` - to build development version  

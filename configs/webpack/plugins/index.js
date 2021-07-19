@@ -1,7 +1,12 @@
+const path = require('path');
+
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {DefinePlugin} = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const {PATHS} = require('../../constants');
 
 const getCssPlugin = filename => new MiniCssExtractPlugin({filename, chunkFilename: filename});
 
@@ -30,7 +35,11 @@ const HTML_PLUGIN = new HtmlWebpackPlugin({
     }),
 });
 
+const COPY_PLUGIN = new CopyWebpackPlugin({
+    patterns: [{from: './assets/icons', to: path.join(PATHS.dist, '/icons')}],
+});
+
 module.exports = {
-    dev: [CLEAN_PLUGIN, DEFINE_PLUGIN, getCssPlugin('[name].css'), HTML_PLUGIN],
-    prod: [CLEAN_PLUGIN, DEFINE_PLUGIN, getCssPlugin('[name].[contenthash].css'), HTML_PLUGIN],
+    dev: [CLEAN_PLUGIN, COPY_PLUGIN, DEFINE_PLUGIN, getCssPlugin('[name].css'), HTML_PLUGIN],
+    prod: [CLEAN_PLUGIN, COPY_PLUGIN, DEFINE_PLUGIN, getCssPlugin('[name].[contenthash].css'), HTML_PLUGIN],
 };

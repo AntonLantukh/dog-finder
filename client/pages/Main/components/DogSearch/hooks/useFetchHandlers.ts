@@ -11,10 +11,15 @@ type FetchDogsProps = {
     setError: (e: any) => void;
 };
 
-export const useFetchDogs = ({setIsPending, setDogs, setError}: FetchDogsProps): ((b: string) => Promise<void>) =>
+export const useFetchDogs = ({setIsPending, setDogs, setError}: FetchDogsProps): ((b: string[]) => Promise<void>) =>
     useCallback(
-        async (breed: string): Promise<void> => {
+        async (breed: string[]): Promise<void> => {
             setIsPending(true);
+
+            if (!breed.length) {
+                setIsPending(false);
+                return;
+            }
 
             return getDogs({breed})
                 .then(data => setDogs((dogs: string[]) => (dogs ? [...dogs, ...data.message] : data.message)))
@@ -44,9 +49,9 @@ type InfiniteScrollProps = {
     isSearchActivated: boolean;
     isPending: boolean;
     error: unknown;
-    breed: string | null;
+    breed: string[];
 
-    fetchDogs: (b: string) => Promise<void>;
+    fetchDogs: (b: string[]) => Promise<void>;
 };
 
 /** Fetching on infinite scroll */

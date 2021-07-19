@@ -7,7 +7,7 @@ import Spinner from '../Spinner';
 
 import type {Breeds} from 'client/typings/breed';
 
-import {validateFile} from '../../utils/validation';
+import {validateFile as onValidate} from '../../utils/validation';
 
 import {useIntersection} from './hooks/useIntersection';
 import {useBreedsFetch, useFetchDogs, useInfiniteDogsLoad} from './hooks/useFetchHandlers';
@@ -22,7 +22,7 @@ const DogSearch: FunctionComponent = () => {
     const [dogs, setDogs] = useState<string[]>([]);
     const [isSearchActivated, setSearchActivated] = useState<boolean>(false);
     const [isPending, setIsPending] = useState<boolean>(false);
-    const [breed, setBreed] = useState<string | null>(null);
+    const [breed, setBreed] = useState<string[]>([]);
     const [error, setError] = useState<unknown>(null);
 
     const {isIntersecting, interRef} = useIntersection();
@@ -43,9 +43,9 @@ const DogSearch: FunctionComponent = () => {
 
     return (
         <div className={css.dogSearch}>
-            <Uploader {...{onChange, showPreview: true, accept: '.jpg,.jpeg,.png', validateFile}} />
+            <Uploader {...{onChange, showPreview: true, accept: '.jpg,.jpeg,.png', onValidate}} />
             {isSearchActivated && <Breed {...{breed}} />}
-            {dogs && <DogsList {...{dogs, isPending, interRef}} />}
+            {Boolean(dogs.length) && <DogsList {...{dogs, isPending, interRef}} />}
             {isPending && (
                 <div className={css.dogSearch__spinner}>
                     <Spinner />

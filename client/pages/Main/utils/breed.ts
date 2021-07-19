@@ -1,36 +1,38 @@
 import type {Prediction} from 'client/typings/prediction';
 import type {Breeds} from 'client/typings/breed';
 
-export const getBreedFromPrediction = (predictions: Prediction[], breeds: Breeds) => {
-    const breedData = {
-        breed: '',
-        subBreed: '',
-        originalBreed: '',
-    };
+export const getProbableBreed = (predictions: Prediction[]): string | null => {
+    const firstPrediction = predictions.sort((a, b) => b.probability - a.probability)?.[0]?.className;
 
-    const mostProbableBreed = predictions.sort((a, b) => b.probability - a.probability)?.[0]?.className;
+    return firstPrediction ? firstPrediction.trim().split(',')[0].toLowerCase() : null;
+};
 
-    if (!mostProbableBreed) {
-        return null;
-    }
+export const getBreedsArray = (breeds: Breeds, prediction: string, breed: string[] = []) => {
+    Object.keys(breeds).some(b => {
+        if (prediction.includes(b)) {
+            breed.push(b);
 
-    let simlarBreed;
+            if (Array.isArray(breeds[b])) {
+                (breeds[b] as string[]).some(b => {
+                    breed = getBreedsArray({[b]: breeds[b]}, prediction, breed);
+                });
+            }
 
-    const parsedBreed = mostProbableBreed.trim().split(',')[0].toLowerCase();
-
-    if (breeds[parsedBreed]) {
-        simlarBreed = breeds[parsedBreed];
-    }
-
-    const breedNoSpaces = parsedBreed.split(' ').join('');
-
-    if (breeds[breedNoSpaces]) {
-        simlarBreed = breeds[parsedBreed];
-    }
-
-    simlarBreed = parsedBreed.split(' ').find(breed => {
-        return breeds[breed];
+            return true;
+        }
     });
 
-    return simlarBreed;
+    return breed;
+};
+
+export const getBreedFromPrediction = (predictions: Prediction[], breeds: Breeds): string[] => {
+    const mostProbableBreed = getProbableBreed(predictions);
+
+    if (!mostProbableBreed) {
+        return [];
+    }
+
+    const breed = getBreedsArray(breeds, mostProbableBreed);
+
+    return breed;
 };

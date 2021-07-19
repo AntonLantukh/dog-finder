@@ -1,7 +1,7 @@
 {
-    "name": "suggest",
+    "name": "dog-finder",
     "version": "0.0.1",
-    "description": "Suggesting locations",
+    "description": "Dog-finder",
     "main": "index.js",
     "scripts": {
         "prepare": "husky install && husky add .husky/pre-commit 'npx lint-staged'",
@@ -23,19 +23,18 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+ssh://git@github.com:AntonLantukh/suggest.git"
+        "url": "git+ssh://git@github.com:AntonLantukh/dog-finder.git"
     },
     "keywords": [
-        "suggest",
-        "booking",
-        "rentalcars"
+        "dog-finder",
+        "breed"
     ],
     "author": "Anton Lantukh",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/AntonLantukh/suggest/issues"
+        "url": "https://github.com/AntonLantukh/dog-finder/issues"
     },
-    "homepage": "https://github.com/AntonLantukh/suggest#readme",
+    "homepage": "https://github.com/AntonLantukh/dog-finder#readme",
     "devDependencies": {
         "@babel/core": "7.14.3",
         "@babel/plugin-proposal-class-properties": "7.13.0",

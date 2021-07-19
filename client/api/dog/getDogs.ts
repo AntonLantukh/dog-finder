@@ -6,12 +6,12 @@ const DEFAULT_NUMBER = 6;
 
 type Params = {
     dogsCount?: number;
-    breed: string;
+    breed: string[];
 };
 
 type BackResponse = BreedWithUrl;
 
 export default ({dogsCount = DEFAULT_NUMBER, breed}: Params): Promise<BackResponse> =>
     axios
-        .get(`https://dog.ceo/api/breed/${breed}/images/random/${dogsCount}`)
+        .get(`https://dog.ceo/api/breed/${breed.join('/')}/images/random/${dogsCount}`)
         .then(({data}: AxiosResponse<BackResponse>) => data);

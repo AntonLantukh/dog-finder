@@ -1,7 +1,9 @@
-import React, {useState, FunctionComponent, ChangeEvent, DragEvent, useCallback} from 'react';
+import React, {useState, FunctionComponent} from 'react';
 
 import DragArea from './DragArea';
 import Preview from './Preview';
+
+import {useFileHandlers, useSetPreview} from './useFileHandlers';
 
 import css from './style.scss';
 
@@ -9,70 +11,16 @@ type UploaderProps = {
     accept: string;
     showPreview?: boolean;
     onChange: (f: FileList) => void;
-    validateFile?: (f: FileList | null) => string | null;
+    onValidate?: (f: FileList | null) => string | null;
 };
 
-const Uploader: FunctionComponent<UploaderProps> = ({showPreview = true, accept, onChange, validateFile}) => {
+const Uploader: FunctionComponent<UploaderProps> = ({showPreview = true, accept, onChange, onValidate}) => {
     const [previewUrl, setPreviewUrl] = useState<string>('');
     const [isPreviewPending, setPending] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
-    const setPreview = useCallback(
-        (file: File) => {
-            const reader = new FileReader();
-
-            reader.onloadstart = () => setPending(true);
-            reader.onerror = () => setPending(false);
-            reader.onabort = () => setPending(false);
-            reader.onloadend = () => setPending(false);
-            reader.onload = () => setPreviewUrl(reader.result as string);
-
-            reader.readAsDataURL(file);
-        },
-        [setPreviewUrl],
-    );
-
-    const onFileUpload = useCallback(
-        (evt: ChangeEvent) => {
-            const files = (evt.target as HTMLInputElement)?.files;
-
-            const error = validateFile ? validateFile(files) : null;
-
-            if (error) {
-                setError(error);
-                return;
-            }
-
-            const checkedFiles = files as FileList;
-
-            if (showPreview) {
-                setPreview(checkedFiles[0]);
-            }
-
-            onChange(checkedFiles);
-        },
-        [setPreview, showPreview, onChange, validateFile],
-    );
-
-    const onFileDrop = useCallback(
-        (evt: DragEvent) => {
-            const files = evt.dataTransfer.files;
-
-            const error = validateFile ? validateFile(files) : null;
-
-            if (error) {
-                setError(error);
-                return;
-            }
-
-            if (showPreview && files?.length) {
-                setPreview(files[0]);
-            }
-
-            onChange(files);
-        },
-        [setPreview, showPreview, onChange, validateFile],
-    );
+    const setPreview = useSetPreview({setPreviewUrl, setPending});
+    const {onFileDrop, onFileUpload} = useFileHandlers({showPreview, setError, setPreview, onChange, onValidate});
 
     return (
         <div className={css.uploader}>
