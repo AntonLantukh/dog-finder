@@ -37,9 +37,6 @@ export const useFileHandlers = ({
             const fileReader = new FileReader();
 
             fileReader.onload = async () => {
-                const image = document.createElement('img');
-                image.src = fileReader.result as string;
-
                 const predictions = await getPredictions(fileReader)
                     .catch(err => setError(err))
                     .finally(() => setIsPending(false));

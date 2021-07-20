@@ -1,6 +1,8 @@
 import React from 'react';
 import {render, fireEvent, waitFor} from '@testing-library/react';
 
+import {mockFile, mockReader, mockUploadEvent, mockDropEvent} from '../../../mocks';
+
 import Uploader from '..';
 
 const mockOnChange = jest.fn();
@@ -13,17 +15,6 @@ const mockBaseProps = {
     onValidate: mockOnValidate,
 };
 
-const mockFile = new Blob(['testing'], {type: 'image/jpeg'});
-
-const mockReader = {
-    readAsDataURL: function () {
-        this.onloadstart();
-        this.onload();
-    },
-    onloadstart: jest.fn(),
-    onload: jest.fn(),
-};
-
 // @ts-expect-error
 window.FileReader = jest.fn(() => mockReader);
 
@@ -33,11 +24,6 @@ beforeEach(() => {
 
 describe('Uploader', () => {
     describe('Upload change event', () => {
-        const mockUploadEvent = {
-            target: {
-                files: [mockFile],
-            },
-        };
         it('Triggers parent onChange event if validation is passed', async () => {
             const {container} = render(<Uploader {...mockBaseProps} />);
 
@@ -68,11 +54,6 @@ describe('Uploader', () => {
     });
 
     describe('Upload drop event', () => {
-        const mockDropEvent = {
-            dataTransfer: {
-                files: [mockFile],
-            },
-        };
         it('Triggers parent onChange event if validation is passed', async () => {
             const {container} = render(<Uploader {...mockBaseProps} />);
 

@@ -7,11 +7,10 @@ import Dog from '../Dog';
 
 type DogsListProps = {
     dogs: string[];
-    isPending: boolean;
 };
 
-const DogsList: FunctionComponent<DogsListProps> = ({dogs, isPending}) => (
-    <div className={cn(css.dogs, !isPending && css.dogs_pending)}>
+const DogsList: FunctionComponent<DogsListProps> = ({dogs}) => (
+    <div className={cn(css.dogs)}>
         {dogs.map((dog, key) => (
             <Dog {...{dog}} key={key} />
         ))}

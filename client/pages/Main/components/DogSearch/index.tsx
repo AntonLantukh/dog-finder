@@ -15,7 +15,39 @@ import {useFileHandlers} from './hooks/useFileHandlers';
 
 import css from './style.scss';
 
-const DogsRef = ({interRef}: {interRef: RefObject<HTMLDivElement>}) => <div ref={interRef}></div>;
+type DogSearchContentProps = {
+    onChange: (f: FileList) => void;
+    onValidate?: (f: FileList | null) => string | null;
+    isSearchActivated: boolean;
+    isPending: boolean;
+    breed: string[];
+    dogs: string[];
+    interRef: RefObject<HTMLDivElement>;
+};
+
+export const DogSearchContent: FunctionComponent<DogSearchContentProps> = ({
+    onChange,
+    onValidate,
+    isSearchActivated,
+    isPending,
+    breed,
+    dogs,
+    interRef,
+}) => {
+    return (
+        <div className={css.dogSearch}>
+            <Uploader {...{onChange, showPreview: true, accept: '.jpg,.jpeg,.png', onValidate}} />
+            {isSearchActivated && <Breed {...{breed}} />}
+            {Boolean(dogs.length) && <DogsList {...{dogs}} />}
+            {isPending && (
+                <div className={css.dogSearch__spinner}>
+                    <Spinner />
+                </div>
+            )}
+            <div ref={interRef}></div>
+        </div>
+    );
+};
 
 const DogSearch: FunctionComponent = () => {
     const [breeds, setBreeds] = useState<Breeds>({});
@@ -41,19 +73,7 @@ const DogSearch: FunctionComponent = () => {
     useBreedsFetch({setBreeds});
     useInfiniteDogsLoad({isSearchActivated, isIntersecting, isPending, fetchDogs, breed, error});
 
-    return (
-        <div className={css.dogSearch}>
-            <Uploader {...{onChange, showPreview: true, accept: '.jpg,.jpeg,.png', onValidate}} />
-            {isSearchActivated && <Breed {...{breed}} />}
-            {Boolean(dogs.length) && <DogsList {...{dogs, isPending, interRef}} />}
-            {isPending && (
-                <div className={css.dogSearch__spinner}>
-                    <Spinner />
-                </div>
-            )}
-            <DogsRef {...{interRef}} />
-        </div>
-    );
+    return <DogSearchContent {...{onChange, onValidate, isSearchActivated, isPending, breed, dogs, interRef}} />;
 };
 
 export default DogSearch;
