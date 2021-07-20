@@ -31,14 +31,15 @@ export const useFetchDogs = ({setIsPending, setDogs, setError}: FetchDogsProps):
 
 type FetchBreedsProps = {
     setBreeds: (b: Breeds) => void;
+    setError: (e: any) => void;
 };
 
 /** Getting breeds right after page load */
-export const useBreedsFetch = ({setBreeds}: FetchBreedsProps) =>
+export const useBreedsFetch = ({setBreeds, setError}: FetchBreedsProps) =>
     useEffect(() => {
         const getData = async () => {
-            const data = await getBreeds();
-            setBreeds(data.message);
+            const data = await getBreeds().catch(err => setError(err));
+            setBreeds(data?.message || {});
         };
 
         void getData();

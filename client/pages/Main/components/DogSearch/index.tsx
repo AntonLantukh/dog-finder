@@ -70,7 +70,7 @@ const DogSearch: FunctionComponent = () => {
         setBreed,
     });
 
-    useBreedsFetch({setBreeds});
+    useBreedsFetch({setBreeds, setError});
     useInfiniteDogsLoad({isSearchActivated, isIntersecting, isPending, fetchDogs, breed, error});
 
     return <DogSearchContent {...{onChange, onValidate, isSearchActivated, isPending, breed, dogs, interRef}} />;

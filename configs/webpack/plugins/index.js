@@ -17,7 +17,7 @@ const DEFINE_PLUGIN = new DefinePlugin({
 });
 
 const HTML_PLUGIN = new HtmlWebpackPlugin({
-    title: 'Find your dog',
+    title: `Find your dog's breed`,
     filename: 'index.html',
     template: 'client/html/index.ejs',
     inject: false,

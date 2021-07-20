@@ -24,6 +24,6 @@
             "client/*": ["./client/*"]
         }
     },
-    "include": ["client/**/*.ts", "client/**/*.spec.ts", "client/**/*.tsx", "typings/**/*.ts", "client/pages/Main/components/Uploader/spec/index.spec.tss"],
+    "include": ["client/**/*.ts", "client/**/*.spec.ts", "client/**/*.tsx", "typings/**/*.ts"],
     "exclude": ["node_modules"]
 }
