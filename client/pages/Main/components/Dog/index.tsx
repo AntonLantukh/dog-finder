@@ -16,7 +16,7 @@ const Dog: FunctionComponent<DogProps> = ({dog}) => {
     }, [dog]);
 
     return (
-        <section className={css.dog}>
+        <section data-e2e="dog" className={css.dog}>
             <img onLoad={onLoad} className={css.dog__image} src={url} alt="Dog" />
         </section>
     );

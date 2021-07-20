@@ -15,7 +15,7 @@ describe('DragArea', () => {
         const {queryByText, container} = render(<DragArea {...props} />);
 
         expect(container.querySelector('input')).toBeTruthy();
-        expect(queryByText('Or just drag it to the window')).toBeTruthy();
+        expect(queryByText('Or just drag and drop it to the window')).toBeTruthy();
     });
 
     it('Renders error if there is error', () => {

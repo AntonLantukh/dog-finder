@@ -11,6 +11,7 @@ module.exports = {
         '\\.(css|scss)$': '<rootDir>/client/__mocks__/css.ts',
         '\\.(svg|gif|png|jpg|jpeg)$': '<rootDir>/client/__mocks__/image.ts',
     },
+    modulePathIgnorePatterns: ['<rootDir>/client/e2e'],
     coverageProvider: 'v8',
     transform: {
         '^.+\\.(ts|tsx)$': 'babel-jest',

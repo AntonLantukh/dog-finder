@@ -27,7 +27,7 @@ const DragArea: FunctionComponent<DragAreaProps> = ({onFileDrop, onFileUpload, a
                 <label htmlFor="upload" className={css.dragdrop__button}>
                     Upload the image
                 </label>
-                <span className={css.dragdrop__caption}>Or just drag it to the window</span>
+                <span className={css.dragdrop__caption}>Or just drag and drop it to the window</span>
             </div>
             {error && <p className={css.dragdrop__error}>{error}</p>}
         </div>

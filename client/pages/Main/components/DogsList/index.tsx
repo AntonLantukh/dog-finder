@@ -10,7 +10,7 @@ type DogsListProps = {
 };
 
 const DogsList: FunctionComponent<DogsListProps> = ({dogs}) => (
-    <div className={cn(css.dogs)}>
+    <div data-e2e="dogs" className={cn(css.dogs)}>
         {dogs.map((dog, key) => (
             <Dog {...{dog}} key={key} />
         ))}
