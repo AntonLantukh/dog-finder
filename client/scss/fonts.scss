@@ -1,13 +1,9 @@
 @font-face {
-    font-family: 'ubuntu-regular';
-    src: url('../fonts/Ubuntu-Regular.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'ubuntu';
-    src: url('../fonts/Ubuntu-Medium.woff2') format('woff2');
+    font-family: 'baloo';
+    src: url('../fonts/Baloo2-Regular.woff2') format('woff2');
 }
 
 html {
-    font-family: 'ubuntu', Helvetica, Arial, sans-serif;
+    font-family: 'baloo', Helvetica, Arial, sans-serif;
+    font-weight: 400;
 }
