@@ -31,7 +31,7 @@ describe('validateFile', () => {
     it('Got invalid size => returns error', () => {
         const files = [
             {
-                size: 1_048_599,
+                size: 8_388_610,
                 name: 'dog.jpg',
                 type: 'image/jpeg',
             },
@@ -45,7 +45,7 @@ describe('validateFile', () => {
     it('Got invalid format => returns error', () => {
         const files = [
             {
-                size: 1_048_570,
+                size: 8_388_500,
                 name: 'dog.jpg',
                 type: 'image/svg',
             },
@@ -59,7 +59,7 @@ describe('validateFile', () => {
     it('Everything is ok => no errors', () => {
         const files = [
             {
-                size: 1_048_572,
+                size: 8_388_500,
                 name: 'dog.jpg',
                 type: 'image/jpeg',
             },

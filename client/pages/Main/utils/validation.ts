@@ -5,11 +5,11 @@ const AVAILABLE_FORMATS = [MIME_TYPES['.jpg'], MIME_TYPES['.jpeg'], MIME_TYPES['
 export const VALIDATION_ERROR = {
     EMPTY_FILE: 'Please upload at least one dog image',
     INVALID_COUNT: 'You should upload no more than one dog image',
-    INVALID_SIZE: 'You have exceeded max filxe size (1 mb.)',
+    INVALID_SIZE: 'You have exceeded max file size (8 mb.)',
     INVALID_FORMAT: 'Please upload one of the following image formats: .jpg, .jpeg, .png',
 };
 
-const MAX_FILE_SIZE = 1_048_576;
+const MAX_FILE_SIZE = 8_388_608;
 
 export const validateFile = (files: FileList | null): string | null => {
     if (!files?.length) return VALIDATION_ERROR.EMPTY_FILE;
