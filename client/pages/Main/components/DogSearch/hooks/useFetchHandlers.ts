@@ -15,6 +15,7 @@ export const useFetchDogs = ({setIsPending, setDogs, setError}: FetchDogsProps):
     useCallback(
         async (breed: string[]): Promise<void> => {
             setIsPending(true);
+            setError(null);
 
             if (!breed.length) {
                 setIsPending(false);
@@ -61,11 +62,10 @@ export const useInfiniteDogsLoad = ({
     isIntersecting,
     isPending,
     breed,
-    error,
     fetchDogs,
 }: InfiniteScrollProps): void =>
     useEffect(() => {
-        if (isIntersecting && isSearchActivated && !isPending && !error && breed) {
+        if (isIntersecting && isSearchActivated && !isPending && breed) {
             void fetchDogs(breed);
         }
-    }, [isSearchActivated, isIntersecting, isPending, fetchDogs, breed, error]);
+    }, [isSearchActivated, isIntersecting, isPending, fetchDogs, breed]);
